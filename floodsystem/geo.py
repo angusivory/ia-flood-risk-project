@@ -6,29 +6,54 @@ geographical data.
 
 """
 import math
+from haversine import haversine
 from .utils import sorted_by_key  # noqa
 
+"function generates and returns a list of stations, ordered by proximity to specified co-ord point"
+def stations_by_distance(stations, p):
+    result = []
 
-#function for task 1B to be inserted here
+    #append list with each station name, station town and distance from point p (courtesy of haversine)
+    for station in stations:
+        result.append((station.name, station.town, haversine(p, station.coord)))
 
-def stations_within_radius(stations, centre, r, in_km=True):
+    result = sorted_by_key(result, 2)
+    return result
+
+
+"""function generates and returns a list of stations within a specified radius of a specified co-ord point"""
+def stations_within_radius(stations, centre, r):
     those_within_radius = []
 
-    #this converts km into degrees of long/lat, unless the user has already done that.
-    if in_km == True:
-        r *= 360/40000
-
     for station in stations:
-        x_diff = station.coord[0] - centre[0]
-        y_diff = station.coord[1] - centre[1]
-        r_diff = math.sqrt(x_diff**2 + y_diff**2)
+        r_diff = haversine(centre, station.coord)
         if r_diff < r:
             those_within_radius.append(station.name)      
 
     return those_within_radius
 
-#function for task 1D to be inserted here
+"""function to generate and return a container of rivers with monitoring stations"""
+def rivers_with_station(stations):
+    #use a set so that if it comes across a potential duplicate during the for loop, it ignores it
+    result = set()
+    for station in stations:
+        result.add(station.river)
+    
+    return result
 
+"""function to generate and return a dictionary of <river name> : [stations on river]"""
+def stations_by_river(stations):
+    result = {}
+    for station in stations:
+        if not station.river in result:
+            result[station.river] = [station.name]
+        else:
+            result[station.river].append(station.name)
+
+    return result
+
+
+"""function generates a list of (river, number of stations on river) tuples, then returns the top N entries as required"""
 def rivers_by_station_number(stations, N):
     river_dict = {}
     river_tuples = []
@@ -44,8 +69,8 @@ def rivers_by_station_number(stations, N):
     river_tuples = [(river, value) for river, value in river_dict.items()]
 
     """Sort list of tuples by second element, i.e. <number of stations>"""
-    river_tuples.sort(key = lambda x: x[1], reverse=True)     
-    
+    river_tuples = sorted_by_key(river_tuples, 1, True)
+
     """Iterate through tuples and return the ones with the N highest number of stations"""
     river_tuples_slice = []
     done = False
