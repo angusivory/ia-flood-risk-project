@@ -14,6 +14,7 @@ def run():
 
     inconsistent_stations = inconsistent_typical_range_stations(stations)
 
+    #compile into neat list of names
     inconsistent_station_names = []
     for x in inconsistent_stations:
         inconsistent_station_names.append(x.name)

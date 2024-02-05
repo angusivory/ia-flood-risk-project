@@ -23,14 +23,14 @@ def stations_by_distance(stations, p):
 
 """function generates and returns a list of stations within a specified radius of a specified co-ord point"""
 def stations_within_radius(stations, centre, r):
-    those_within_radius = []
+    result = []
 
     for station in stations:
         r_diff = haversine(centre, station.coord)
         if r_diff < r:
-            those_within_radius.append(station.name)      
+            result.append(station.name)      
 
-    return those_within_radius
+    return result
 
 """function to generate and return a container of rivers with monitoring stations"""
 def rivers_with_station(stations):

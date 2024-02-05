@@ -8,10 +8,10 @@ from floodsystem.stationdata import build_station_list
 def run():
     """Requirements for Task 1A"""
 
-    # Build list of stations
+    #build list of stations
     stations = build_station_list()
 
-    # Print number of stations
+    #print number of stations
     print("Number of stations: {}".format(len(stations)))
 
     # Display data from 3 stations:
