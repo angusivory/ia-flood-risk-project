@@ -21,15 +21,14 @@ def run():
     list_of_rivers.sort()
 
     print("*** Part (a) ***\n")
-    print(len(list_of_rivers), "\n")
-    print(list_of_rivers[:10], "\n")
+    print("{} stations. First 10: {}".format(len(list_of_rivers), list_of_rivers[:10]))
 
     
     river_dict = stations_by_river(stations)
     for river in river_dict:
         river_dict[river].sort()
 
-    print("*** Part (b) ***\n")
+    print("\n*** Part (b) ***\n")
     print(river_dict["River Aire"], "\n")
     print(river_dict["River Cam"], "\n")
     print(river_dict["River Thames"])
