@@ -41,7 +41,6 @@ class MonitoringStation:
 
     """Method that checks typical high/low range data for consistency (returns True/False)"""
     def typical_range_consistent(self):
-#        print(f"Length: {}, low: {}, high: {}, difference: {}".format(len(self.typical_range), self.typical_range[0], self.typical_range[1], self.typical_range[1] - self.typical_range[0]))
         if self.typical_range is None:
             return False
         elif len(self.typical_range) == 0:
@@ -51,6 +50,14 @@ class MonitoringStation:
         else:
             return True
         
+    def relative_water_level(self):
+        if self.typical_range_consistent() == True and self.latest_level != None:
+            fraction = (self.latest_level - self.typical_range[0]) / (self.typical_range[1] - self.typical_range[0])
+            return fraction
+        else:
+            return None
+
+
 """Takes a list of station objects and returns a list of those with inconsistent data"""
 def inconsistent_typical_range_stations(stations):
     inconsistent_stations = []
