@@ -1,6 +1,5 @@
 """This module contains a collection of functions related to
-geographical data.
-
+water level data.
 """
 
 from .utils import sorted_by_key  # noqa
