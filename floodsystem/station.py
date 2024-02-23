@@ -28,6 +28,7 @@ class MonitoringStation:
         self.town = town
 
         self.latest_level = None
+        self.flood_risk = None
 
     def __repr__(self):
         d = "Station name:     {}\n".format(self.name)

@@ -5,11 +5,10 @@
 geographical data.
 
 """
-import math
 from haversine import haversine
 from .utils import sorted_by_key  # noqa
 
-"function generates and returns a list of stations, ordered by proximity to specified co-ord point"
+"""function generates and returns a list of stations, ordered by proximity to specified co-ord point"""
 def stations_by_distance(stations, p):
     result = []
 
@@ -31,6 +30,16 @@ def stations_within_radius(stations, centre, r):
             result.append(station.name)      
 
     return result
+
+def stations_within_radius_returns_object(stations, centre, r):
+    resultobj = []
+
+    for station in stations:
+        r_diff = haversine(centre, station.coord)
+        if r_diff < r:
+            resultobj.append(station)      
+
+    return resultobj
 
 """function to generate and return a container of rivers with monitoring stations"""
 def rivers_with_station(stations):

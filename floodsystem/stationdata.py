@@ -87,3 +87,28 @@ def update_water_levels(stations):
         if station.measure_id in measure_id_to_value:
             if isinstance(measure_id_to_value[station.measure_id], float):
                 station.latest_level = measure_id_to_value[station.measure_id]
+
+def assign_risk_categories(stations, thresholds):
+    """Assign risk category 1-4 to each station"""
+    
+    for station in stations:
+
+        # Reset flood risk - NB '0' instead of 'None' for incoherent stations makes sorting easier later on
+        station.flood_risk = 0
+
+        # Assign new flood risk
+        try:
+            relative_level = float(station.relative_water_level())
+            assigned = False
+            index = 0
+            while assigned == False:
+                if index == len(thresholds):
+                    station.flood_risk = index + 1
+                    assigned = True
+                elif relative_level <= thresholds[index]:
+                    station.flood_risk = index + 1
+                    assigned = True
+                
+                index += 1
+        except:
+            pass

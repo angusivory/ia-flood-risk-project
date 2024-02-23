@@ -1,5 +1,6 @@
 """This module contains a collection of functions related to
 water level data.
+
 """
 
 from .utils import sorted_by_key  # noqa
@@ -20,4 +21,15 @@ def stations_level_over_threshold(stations, tol):
             #'None' is returned as the water level data for this station is inconsistent
             pass
     result = sorted_by_key(result, 1, True)
+    return result
+
+def town_risk_levels(stations):
+    result = {}
+
+    for station in stations:
+        if station.town in result:
+            result[station.town].append(station.flood_risk)
+        else:
+            result[station.town] = [station.flood_risk]
+
     return result
