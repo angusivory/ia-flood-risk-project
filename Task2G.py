@@ -76,9 +76,11 @@ def run():
 
     towns_at_risk = town_risk_levels(stations)
     
-
+    print("Towns at risk:\n")
     for town in towns_at_risk:
-        print("{}: average level of {} ({} stations)".format((town), sum(towns_at_risk[town])/len(towns_at_risk[town]), len(towns_at_risk[town])))
+        average = sum(towns_at_risk[town])/len(towns_at_risk[town])
+        if average > 3:
+            print("{}: average level of {} ({} stations)".format((town), average, len(towns_at_risk[town])))
 
 
 if __name__ == "__main__":
