@@ -35,14 +35,23 @@ def town_risk_levels(stations):
     return result
 
 def stations_highest_rel_level(stations, N):
-    relative_water_level = MonitoringStation.relative_water_level(station)
-    list = {}
+    result = []
 
     for station in stations:
-    
-         list.append[(station, relative_water_level)]
-        
-    
+        relative_water_level = MonitoringStation.relative_water_level(station)
+        result.append((station, relative_water_level))
 
-    list = sorted_by_key(list, 1, reverse=True)
-    return list
+    # Remove stations with relative_water_level = None as that messes up the sorting
+    data_fine = []
+    data_bad = []
+    for x in result:
+        if x[1] != None:
+            data_fine.append(x)
+        else:
+            data_bad.append(x)
+
+    data_fine = sorted_by_key(data_fine, 1, reverse=True)
+    
+    # Recombine lists
+    result = data_fine + data_bad
+    return result[:N]
