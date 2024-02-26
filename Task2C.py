@@ -12,12 +12,10 @@ def run():
 
     # Update latest level data for all stations
     update_water_levels(stations)
-
-    problems = stations_level_over_threshold(stations, 0.8)
-
-    for problem in problems:
-        print(problem[0].name, problem[1])
+#for loop that prints the names of the 10 stations at which the current relative level is highest, with the relative level beside each station name
+    for i,j in stations_highest_rel_level(stations,10):
+        print(i,j)
 
 if __name__ == "__main__":
-    print("*** Task 2B: CUED Part IA Flood Warning System ***")
+    print("*** Task 2C: CUED Part IA Flood Warning System ***")
     run()
