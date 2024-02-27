@@ -11,5 +11,14 @@ from floodsystem.stationdata import build_station_list
 
 
 def polyfit(dates, levels, p):
-    d0 = dates[0]
+
+    x = matplotlib.dates.date2num(dates)
+    y = levels
+    # Using shifted x values, find coefficient of best-fit polynomial f(x) of degree p
+    shift = x[0]
+    best_fit_coeff = np.polyfit(x - shift, y, p)
+    # Convert coefficient into a polynomial that can be evaluated
+    poly = np.poly1d(best_fit_coeff)
+    return (poly, shift)
+
 
