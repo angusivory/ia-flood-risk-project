@@ -5,7 +5,6 @@ import matplotlib
 def polyfit(dates, levels, p):
 
     x = matplotlib.dates.date2num(dates)
-    print(x)
     y = levels
     # Using shifted x values, find coefficient of best-fit polynomial f(x) of degree p
     shift = x[0]
