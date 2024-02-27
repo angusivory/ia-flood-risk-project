@@ -1,18 +1,11 @@
-
 import numpy as np
 import matplotlib.pyplot as plt
 import matplotlib
-import datetime
-
-from floodsystem.datafetcher import fetch_measure_levels
-from floodsystem.flood import stations_highest_rel_level
-from floodsystem.stationdata import build_station_list
-
-
 
 def polyfit(dates, levels, p):
 
     x = matplotlib.dates.date2num(dates)
+    print(x)
     y = levels
     # Using shifted x values, find coefficient of best-fit polynomial f(x) of degree p
     shift = x[0]

@@ -6,7 +6,6 @@ import matplotlib
 import matplotlib.pyplot as plt
 import numpy as np
 
-from .utils import sorted_by_key  # noqa
 from .station import MonitoringStation
 from .analysis import polyfit
 

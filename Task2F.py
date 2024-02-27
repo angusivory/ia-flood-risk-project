@@ -1,10 +1,8 @@
 import datetime
 
 from floodsystem.stationdata import build_station_list, update_water_levels
-from floodsystem.station import MonitoringStation
 from floodsystem.datafetcher import fetch_measure_levels
-from floodsystem.plot import plot_water_levels, plot_water_level_with_fit
-from floodsystem.analysis import polyfit
+from floodsystem.plot import plot_water_level_with_fit
 from floodsystem.flood import stations_highest_rel_level
 
 def run():
