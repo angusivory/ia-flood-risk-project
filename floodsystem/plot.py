@@ -2,11 +2,13 @@
 water level data.
 
 """
+import matplotlib
 import matplotlib.pyplot as plt
 import numpy as np
 
 from .utils import sorted_by_key  # noqa
 from .station import MonitoringStation
+from .analysis import polyfit
 
 """function to display, using matplotlib, water level vs time for a given station"""
 def plot_water_levels(station, dates, levels):
