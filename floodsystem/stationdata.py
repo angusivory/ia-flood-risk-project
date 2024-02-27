@@ -112,3 +112,5 @@ def assign_risk_categories(stations, thresholds):
                 index += 1
         except:
             pass
+    
+    return stations

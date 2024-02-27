@@ -23,6 +23,7 @@ def stations_level_over_threshold(stations, tol):
     result = sorted_by_key(result, 1, True)
     return result
 
+"""function returns a dictionary of <town name> : [list of flood risks from each station]"""
 def town_risk_levels(stations):
     result = {}
 
@@ -34,6 +35,7 @@ def town_risk_levels(stations):
 
     return result
 
+"""function to return the top N stations by relative waterlevel, in form (station, relative water level)"""
 def stations_highest_rel_level(stations, N):
     result = []
 
